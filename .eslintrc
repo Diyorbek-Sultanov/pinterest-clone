@@ -13,13 +13,13 @@
 		"next/core-web-vitals",
 		"eslint:recommended",
 		"airbnb-typescript",
-		"airbnb/hooks",
 		"plugin:@typescript-eslint/recommended",
 		"prettier",
-		"prettier/react",
+		"plugin:react/recommended",
 		"prettier/@typescript-eslint",
 		"plugin:prettier/recommended",
-		"plugin:tailwindcss/recommended"
+		"plugin:tailwindcss/recommended",
+		"some-other-config-you-use"
 	],
 	"plugins": [
 		"react",
@@ -56,7 +56,7 @@
 	"settings": {
 		"tailwindcss": {
 			"callees": ["cn", "clsx", "ctl"],
-			"config": "./tailwind.config.ts"
+			"config": "./tailwind.config.js"
 		}
 	}
 }

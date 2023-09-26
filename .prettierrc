@@ -23,6 +23,7 @@
 		"^@/providers/(.*)$",
 		"^@/hooks/(.*)$",
 		"^@/constants/(.*)$",
+		"^@/types/(.*)$",
 		"^@/lib/(.*)$",
 		"^@/config/(.*)$",
 		"^@/styles/(.*)$",

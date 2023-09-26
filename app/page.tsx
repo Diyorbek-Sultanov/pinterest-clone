@@ -1,10 +1,16 @@
 import type { Metadata } from 'next'
 
+import { Button } from '@/components/ui/button'
+
 export const metadata: Metadata = {
 	title: 'Home',
 	description: '',
 }
 
 export default function Page() {
-	return <div className='mb-10 w-4 h-4 bg-purple-400 text-white'>hello</div>
+	return (
+		<div>
+			<Button>button</Button>
+		</div>
+	)
 }
