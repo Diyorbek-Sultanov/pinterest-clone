@@ -6,6 +6,8 @@ import Sidebar from '@/components/layout/sidebar/sidebar'
 
 import '../styles/globals.css'
 
+import SupabaseProvider from '@/providers/supabase-provider'
+
 const mono = Roboto_Mono({
 	subsets: ['latin'],
 	display: 'swap',
@@ -27,15 +29,17 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={mono.className}>
-				<div className='dark:bg-bgBodyDark bg-bgBody min-h-screen overflow-hidden'>
-					<aside className='hidden md:flex md:fixed md:inset-y-0 z-20 md:w-72 h-full'>
-						<Sidebar />
-					</aside>
-					<main className='md:pl-72'>
-						<Navbar />
-						{children}
-					</main>
-				</div>
+				<SupabaseProvider>
+					<div className='dark:bg-bgBodyDark bg-bgBody min-h-screen overflow-hidden'>
+						<aside className='hidden md:flex md:fixed md:inset-y-0 z-20 md:w-72 h-full'>
+							<Sidebar />
+						</aside>
+						<main className='md:pl-72'>
+							<Navbar />
+							{children}
+						</main>
+					</div>
+				</SupabaseProvider>
 			</body>
 		</html>
 	)
