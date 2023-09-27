@@ -1,3 +1,7 @@
+'use client'
+
+import { useUser } from '@supabase/auth-helpers-react'
+
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
 
@@ -5,7 +9,7 @@ import AuthButtons from './auth-buttons'
 import SearchInput from './search-input'
 
 const Navbar: React.FC = () => {
-	const user = false
+	const user = useUser()
 
 	return (
 		<header className='pt-10 px-8 w-full mb-8'>

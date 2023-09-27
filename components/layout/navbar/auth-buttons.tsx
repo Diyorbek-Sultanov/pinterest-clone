@@ -1,13 +1,18 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
+import { useModal } from '@/hooks/useModal'
 
 const AuthButtons: React.FC = () => {
+	const { onOpen } = useModal()
+
 	return (
 		<>
-			<Button className='capitalize' variant={'destructive'}>
-				signin
+			<Button variant={'destructive'} onClick={onOpen}>
+				Sign in
 			</Button>
-			<Button className='capitalize' variant={'outline'}>
-				signup
+			<Button variant={'outline'} onClick={onOpen}>
+				Sign up
 			</Button>
 		</>
 	)

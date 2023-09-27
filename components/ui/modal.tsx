@@ -2,7 +2,13 @@
 
 import Image from 'next/image'
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from './dialog'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+} from './dialog'
 
 interface IModalProps {
 	isOpen: boolean
@@ -27,6 +33,9 @@ const Modal: React.FC<IModalProps> = ({
 						<Image fill alt='image' src={'/images/pinterest-logo.svg'} />
 					</div>
 					<DialogTitle className='text-center text-xl'>{title}</DialogTitle>
+					<DialogDescription className='text-xs'>
+						{description}
+					</DialogDescription>
 				</DialogHeader>
 				<div>{children}</div>
 			</DialogContent>

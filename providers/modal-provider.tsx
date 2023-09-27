@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import SignInModal from '@/components/ui/modals/signin-modal'
+import AuthModal from '@/components/ui/modals/auth-modal'
 
 const ModalProvider: React.FC = () => {
 	const [isMounted, setIsMounted] = useState(false)
@@ -13,7 +13,7 @@ const ModalProvider: React.FC = () => {
 
 	return (
 		<>
-			<SignInModal />
+			<AuthModal />
 		</>
 	)
 }
