@@ -38,7 +38,7 @@ export interface Database {
           {
             foreignKeyName: "coments_user_id_fkey"
             columns: ["user_id"]
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           }
         ]
@@ -69,7 +69,7 @@ export interface Database {
           {
             foreignKeyName: "liked_pins_user_id_fkey"
             columns: ["user_id"]
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           }
         ]
@@ -103,31 +103,44 @@ export interface Database {
           {
             foreignKeyName: "pins_user_id_fkey"
             columns: ["user_id"]
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           }
         ]
       }
-      users: {
+      profiles: {
         Row: {
           avatar_url: string | null
-          created_at: string
+          full_name: string | null
           id: string
-          name: string | null
+          updated_at: string | null
+          username: string | null
+          website: string | null
         }
         Insert: {
           avatar_url?: string | null
-          created_at?: string
-          id?: string
-          name?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+          username?: string | null
+          website?: string | null
         }
         Update: {
           avatar_url?: string | null
-          created_at?: string
+          full_name?: string | null
           id?: string
-          name?: string | null
+          updated_at?: string | null
+          username?: string | null
+          website?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

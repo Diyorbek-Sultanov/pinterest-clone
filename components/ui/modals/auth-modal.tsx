@@ -19,6 +19,8 @@ const AuthModal: React.FC = () => {
 	const { session } = useSessionContext()
 	const { isOpen, onClose } = useModal()
 
+	const theme = localStorage.getItem('theme') as string
+
 	useEffect(() => {
 		if (session) {
 			router.refresh()
@@ -40,12 +42,16 @@ const AuthModal: React.FC = () => {
 			onClose={handleClose}
 		>
 			<Auth
+				theme={
+					theme === 'system' ? 'dark' : theme === 'dark' ? 'dark' : 'light'
+				}
 				supabaseClient={supabaseClient}
 				appearance={{
 					theme: ThemeSupa,
 				}}
 				socialLayout='horizontal'
 				providers={['github', 'discord', 'google']}
+				redirectTo={`${window.location.origin}/auth/callback`}
 			/>
 		</Modal>
 	)

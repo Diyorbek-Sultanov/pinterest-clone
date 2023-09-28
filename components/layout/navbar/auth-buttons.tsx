@@ -7,14 +7,9 @@ const AuthButtons: React.FC = () => {
 	const { onOpen } = useModal()
 
 	return (
-		<>
-			<Button variant={'destructive'} onClick={onOpen}>
-				Sign in
-			</Button>
-			<Button variant={'outline'} onClick={onOpen}>
-				Sign up
-			</Button>
-		</>
+		<Button variant={'destructive'} onClick={onOpen}>
+			Login
+		</Button>
 	)
 }
 

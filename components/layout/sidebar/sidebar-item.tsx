@@ -18,8 +18,9 @@ const SidebarItem: React.FC<{ item: ISidebarData }> = ({ item }) => {
 	return (
 		<div
 			className={cn(
-				'flex items-center gap-x-2 font-normal text-base text-[#BCBCBC] capitalize cursor-pointer hover:bg-slate-300/30',
-				isActive && 'font-bold text-black bg-[#F0F0F0]'
+				'flex items-center gap-x-2 font-normal text-base text-[#BCBCBC] capitalize cursor-pointer hover:bg-slate-300/30 dark:hover:bg-zinc-200/10',
+				isActive &&
+					'font-bold text-black bg-[#F0F0F0] dark:bg-transparent dark:text-white'
 			)}
 			onClick={() => router.push(item.route)}
 		>
@@ -29,7 +30,7 @@ const SidebarItem: React.FC<{ item: ISidebarData }> = ({ item }) => {
 			</div>
 			<div
 				className={cn(
-					'ml-auto opacity-0 h-[44px] transition-all border-2 border-black',
+					'ml-auto opacity-0 h-[44px] transition-all border-2 border-black dark:border-white',
 					isActive && 'opacity-100'
 				)}
 			/>

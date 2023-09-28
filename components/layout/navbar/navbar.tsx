@@ -1,15 +1,20 @@
-'use client'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 
-import { useUser } from '@supabase/auth-helpers-react'
-
+import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
 
 import AuthButtons from './auth-buttons'
 import SearchInput from './search-input'
 
-const Navbar: React.FC = () => {
-	const user = useUser()
+const Navbar: React.FC = async () => {
+	const supabase = createServerComponentClient({ cookies })
+	const {
+		data: { user },
+	} = await supabase.auth.getUser()
+
+	console.log(user)
 
 	return (
 		<header className='pt-10 px-8 w-full mb-8'>
@@ -30,6 +35,7 @@ const Navbar: React.FC = () => {
 					) : (
 						<AuthButtons />
 					)}
+					<ThemeToggle />
 				</div>
 			</div>
 		</header>

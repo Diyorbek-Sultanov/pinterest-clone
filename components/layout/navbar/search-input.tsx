@@ -10,7 +10,7 @@ const SearchInput: React.FC = () => {
 			/>
 			<Input
 				placeholder='Search...'
-				className='w-full h-full pl-9 rounded-md bg-gray-400/25 focus-visible:ring-purple-400'
+				className='w-full h-full pl-9 rounded-md bg-gray-400/25 dark:bg-[#212121] focus-visible:ring-purple-400'
 			/>
 		</div>
 	)

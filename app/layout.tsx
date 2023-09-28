@@ -1,19 +1,21 @@
 import type { Metadata } from 'next'
-import { Roboto_Mono } from 'next/font/google'
+import { Open_Sans } from 'next/font/google'
 
 import Navbar from '@/components/layout/navbar/navbar'
 import Sidebar from '@/components/layout/sidebar/sidebar'
 import ModalProvider from '@/providers/modal-provider'
-import SupabaseProvider from '@/providers/supabase-provider'
+import { ThemeProvider } from '@/providers/theme-provider'
 
 import '../styles/globals.css'
 
-const mono = Roboto_Mono({
+import SupabaseProvider from '@/providers/supabase-provider'
+
+const mono = Open_Sans({
 	subsets: ['latin'],
 	display: 'swap',
-	weight: ['400', '500', '600', '700'],
+	weight: ['400', '500', '700'],
 	style: ['normal', 'italic'],
-	variable: '--font-rmono',
+	variable: '--font-mono',
 })
 
 export const metadata: Metadata = {
@@ -27,20 +29,22 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang='en'>
+		<html lang='en' suppressHydrationWarning>
 			<body className={mono.className}>
-				<SupabaseProvider>
-					<ModalProvider />
-					<div className='dark:bg-bgBodyDark bg-bgBody min-h-screen overflow-hidden'>
-						<aside className='hidden md:flex md:fixed md:inset-y-0 z-20 md:w-72 h-full'>
-							<Sidebar />
-						</aside>
-						<main className='md:pl-72'>
-							<Navbar />
-							{children}
-						</main>
-					</div>
-				</SupabaseProvider>
+				<ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+					<SupabaseProvider>
+						<ModalProvider />
+						<div className='dark:bg-bgBodyDark bg-bgBody min-h-screen overflow-hidden'>
+							<aside className='hidden md:flex md:fixed md:inset-y-0 z-20 md:w-72 h-full'>
+								<Sidebar />
+							</aside>
+							<main className='md:pl-72'>
+								<Navbar />
+								{children}
+							</main>
+						</div>
+					</SupabaseProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	)
