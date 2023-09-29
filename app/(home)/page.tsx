@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { Button } from '@/components/ui/button'
+import Pin from '@/components/pin'
 
 export const metadata: Metadata = {
 	title: 'Home',
@@ -9,8 +9,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
 	return (
-		<div>
-			<Button>button</Button>
+		<div className='h-full dark:bg-bgHomeDark mx-8'>
+			<div className='px-3 py-5 columns-6 gap-5'>
+				<Pin />
+			</div>
 		</div>
 	)
 }

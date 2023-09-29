@@ -38,7 +38,7 @@ export default function RootLayout({
 							<aside className='hidden md:flex md:fixed md:inset-y-0 z-20 md:w-72 h-full'>
 								<Sidebar />
 							</aside>
-							<main className='md:pl-72'>
+							<main className='md:pl-72 h-full'>
 								<Navbar />
 								{children}
 							</main>

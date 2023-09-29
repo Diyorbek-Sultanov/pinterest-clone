@@ -19,6 +19,7 @@ module.exports = {
 			backgroundColor: {
 				bgBody: '#F3F2F2',
 				bgBodyDark: '#121212',
+				bgHomeDark: '#212121',
 			},
 			colors: {
 				border: 'hsl(var(--border))',
