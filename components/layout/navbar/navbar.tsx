@@ -3,10 +3,9 @@ import { cookies } from 'next/headers'
 
 import MobileSidebar from '@/components/mobile-sidebar'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Button } from '@/components/ui/button'
-import Icon from '@/components/ui/icon'
 
 import AuthButtons from './auth-buttons'
+import ProtectButtons from './protect-buttons'
 import SearchInput from './search-input'
 
 const Navbar: React.FC = async () => {
@@ -23,20 +22,7 @@ const Navbar: React.FC = async () => {
 			<div className='flex items-center gap-x-3 mt-4'>
 				<SearchInput />
 				<div className='flex items-center gap-x-5'>
-					{user ? (
-						<>
-							<Button size={'icon'} variant={'outline'} className='shadow-md'>
-								<Icon name='sliders' />
-								<span className='sr-only'>open filters</span>
-							</Button>
-							<Button size={'icon'}>
-								<Icon name='plus' />
-								<span className='sr-only'>open add page</span>
-							</Button>
-						</>
-					) : (
-						<AuthButtons />
-					)}
+					{user ? <ProtectButtons /> : <AuthButtons />}
 					<ThemeToggle />
 				</div>
 			</div>
