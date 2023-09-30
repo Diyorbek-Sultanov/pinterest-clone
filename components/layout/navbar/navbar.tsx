@@ -1,6 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
+import MobileSidebar from '@/components/mobile-sidebar'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
@@ -18,7 +19,8 @@ const Navbar: React.FC = async () => {
 
 	return (
 		<header className='pt-10 px-8 w-full mb-8'>
-			<div className='flex items-center gap-x-3'>
+			<MobileSidebar />
+			<div className='flex items-center gap-x-3 mt-4'>
 				<SearchInput />
 				<div className='flex items-center gap-x-5'>
 					{user ? (
