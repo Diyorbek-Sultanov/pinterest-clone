@@ -13,7 +13,7 @@ const MobileSidebar: React.FC = () => {
 					<span className='sr-only'>open sidebar</span>
 				</Button>
 			</SheetTrigger>
-			<SheetContent className='p-0' side={'left'}>
+			<SheetContent className='p-0 dark:bg-bgHomeDark' side={'left'}>
 				<Sidebar />
 			</SheetContent>
 		</Sheet>

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import UploadForm from './components/upload-form'
+
 export const metadata: Metadata = {
 	title: 'Pin Create',
 	robots: { follow: false, index: false },
@@ -7,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function CreatePage() {
 	return (
-		<div>
-			<div className='max-w-2xl mx-auto dark:bg-bgHomeDark rounded-2xl shadow-lg dark:shadow-none'>
-				dsdsa
-			</div>
+		<div className='max-w-5xl mx-auto dark:bg-bgHomeDark rounded-xl shadow-lg dark:shadow-none'>
+			<UploadForm />
 		</div>
 	)
 }
