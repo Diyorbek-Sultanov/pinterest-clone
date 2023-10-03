@@ -10,10 +10,11 @@ import { Button } from '../../../components/ui/button'
 import MyImage from '../../../components/ui/image'
 
 interface IImageUploadProps {
+	disabled?: boolean
 	onChange: (path: File[]) => void
 }
 
-const ImageUpload: React.FC<IImageUploadProps> = ({ onChange }) => {
+const ImageUpload: React.FC<IImageUploadProps> = ({ onChange, disabled }) => {
 	const [files, setFiles] = useState<(File & { preview: string })[]>()
 
 	const { getInputProps, getRootProps, isDragActive } = useDropzone({
@@ -37,16 +38,18 @@ const ImageUpload: React.FC<IImageUploadProps> = ({ onChange }) => {
 		<div
 			className={cn(
 				'border-2 border-dashed h-[580px] dark:bg-gray-600/40 rounded-md w-full border-gray-400',
-				isDragActive && 'border-purple-600 dark:bg-slate-700'
+				isDragActive &&
+					'border-purple-600 dark:bg-slate-700 disabled:opacity-50'
 			)}
+			aria-disabled={disabled}
 		>
 			{files && files.length ? (
 				files.map(file => (
-					<div className='w-full h-full relative' key={file.name}>
+					<div className='w-full h-full relative aspect-square' key={file.name}>
 						<MyImage
 							imageUrl={files[0].preview}
 							fill
-							className='object-contain'
+							className='object-cover'
 						/>
 						<Button
 							size={'icon'}

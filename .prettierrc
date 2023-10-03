@@ -18,6 +18,7 @@
 		"<THIRD_PARTY_MODULES>",
 		"",
 		"^types$",
+		"^@/app/(.*)$",
 		"^@/components/(.*)$",
 		"^@/components/ui/(.*)$",
 		"^@/providers/(.*)$",
