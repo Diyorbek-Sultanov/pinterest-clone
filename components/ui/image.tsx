@@ -37,7 +37,7 @@ const MyImage: React.FC<IMyImageProps> = ({ imageUrl, fill, className }) => {
 					width={0}
 					height={0}
 					className={cn(
-						'w-full h-auto duration-700 ease-in-out',
+						'w-full h-full object-cover duration-700 ease-in-out',
 						className,
 						isLoading
 							? 'grayscale blur-2xl scale-110'

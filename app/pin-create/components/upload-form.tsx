@@ -75,6 +75,7 @@ const UploadForm: React.FC = () => {
 			}
 
 			router.refresh()
+			router.push('/')
 			setIsloading(false)
 			toast.success('Pin created')
 			form.reset()

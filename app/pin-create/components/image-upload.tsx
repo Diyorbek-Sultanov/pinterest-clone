@@ -38,10 +38,8 @@ const ImageUpload: React.FC<IImageUploadProps> = ({ onChange, disabled }) => {
 		<div
 			className={cn(
 				'border-2 border-dashed h-[580px] dark:bg-gray-600/40 rounded-md w-full border-gray-400',
-				isDragActive &&
-					'border-purple-600 dark:bg-slate-700 disabled:opacity-50'
+				isDragActive && 'border-purple-600 dark:bg-slate-700'
 			)}
-			aria-disabled={disabled}
 		>
 			{files && files.length ? (
 				files.map(file => (
@@ -56,6 +54,7 @@ const ImageUpload: React.FC<IImageUploadProps> = ({ onChange, disabled }) => {
 							variant={'destructive'}
 							className='absolute top-2 right-3 z-20'
 							onClick={() => removeImage(file.preview)}
+							disabled={disabled}
 						>
 							<span className='sr-only'>delete image</span>
 							<Trash2 className='h-4 w-4' />
@@ -63,16 +62,18 @@ const ImageUpload: React.FC<IImageUploadProps> = ({ onChange, disabled }) => {
 					</div>
 				))
 			) : (
-				<div
+				<button
 					{...getRootProps({
-						className: 'h-full flex items-center justify-center cursor-pointer',
+						className:
+							'h-full flex items-center justify-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed',
 					})}
+					disabled={disabled}
 				>
 					<input {...getInputProps()} />
 					<p className='text-sm text-gray-500 text-center font-medium'>
 						Drag 'n' drop some files here, or click to select files
 					</p>
-				</div>
+				</button>
 			)}
 		</div>
 	)

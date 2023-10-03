@@ -1,24 +1,27 @@
 'use client'
 
-import { useUser } from '@supabase/auth-helpers-react'
+import { useLoadImage } from '@/hooks/userLoadImage'
+import { IPins } from '@/types/pins.types'
 
-import Avatar from './avatar'
-import GetUser from './get-user'
 import SaveButton from './save-button'
 import MyImage from './ui/image'
 
-const Pin: React.FC = () => {
-	const user = useUser()
+interface IPinProps {
+	pin: IPins
+}
+
+const Pin: React.FC<IPinProps> = ({ pin }) => {
+	const imageUrl = useLoadImage(pin) as string
 
 	return (
-		<div className='w-full break-inside-avoid overflow-hidden mb-5 h-full cursor-zoom-in group relative'>
-			<MyImage imageUrl={'/images/eye.jpg'} className='rounded-3xl' />
-			<GetUser
-				avatar={user?.user_metadata.avatar_url}
-				fullName={user?.user_metadata.full_name}
+		<div className='w-full break-inside-avoid overflow-hidden aspect-square mb-5 h-full cursor-zoom-in group relative'>
+			<MyImage
+				imageUrl={imageUrl}
+				className='rounded-3xl aspect-square object-cover max-w-full h-full'
+				fill
 			/>
 			<div className='opacity-0 group-hover:opacity-100 absolute top-2 right-2 transition-opacity'>
-				<SaveButton />G
+				<SaveButton />
 			</div>
 		</div>
 	)

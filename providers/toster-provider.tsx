@@ -3,7 +3,7 @@
 import { Toaster } from 'react-hot-toast'
 
 const ToasterProvider: React.FC = () => {
-	return <Toaster />
+	return <Toaster position='top-right' />
 }
 
 export default ToasterProvider
