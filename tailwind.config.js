@@ -21,6 +21,12 @@ module.exports = {
 				bgBodyDark: '#121212',
 				bgHomeDark: '#212121',
 			},
+			gridTemplateColumns: {
+				pinterestLayout: 'repeat(auto-fill, minmax(250px, 1fr))',
+			},
+			gridAutoRows: {
+				pinterestLayout: '200px',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

@@ -14,8 +14,6 @@ const Navbar: React.FC = async () => {
 		data: { user },
 	} = await supabase.auth.getUser()
 
-	console.log(user)
-
 	return (
 		<header className='pt-10 px-8 w-full mb-8'>
 			<MobileSidebar />

@@ -1,11 +1,21 @@
 'use client'
 
+import { cn } from '@/lib/utils'
+
 import { Button } from './ui/button'
 
-const SaveButton: React.FC<{ pinId?: string }> = ({ pinId }) => {
+type TypeSaveButtonProps = {
+	pinId?: string
+	className?: string
+}
+
+const SaveButton: React.FC<TypeSaveButtonProps> = ({ pinId, className }) => {
 	return (
 		<Button
-			className='bg-rose-600 rounded-2xl dark:hover:bg-rose-500 transition-colors'
+			className={cn(
+				'bg-rose-600 rounded-2xl dark:hover:bg-rose-500 transition-colors',
+				className
+			)}
 			variant={'destructive'}
 			size={'sm'}
 		>
