@@ -9,8 +9,6 @@ import { IComments } from '@/types/comment.types'
 const CommentItem: React.FC<{ comment: IComments }> = ({ comment }) => {
 	const user = useUser()
 
-	console.log(comment)
-
 	return (
 		<div className='flex flex-col gap-y-2'>
 			<div className='flex items-center justify-between'>
