@@ -4,6 +4,7 @@ import { useRef, type ElementRef } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { Send } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -26,6 +27,8 @@ interface IPinCommentProps {
 const PinComment: React.FC<IPinCommentProps> = ({ pinId, comments }) => {
 	const user = useUser()
 	const supabaseClient = useSupabaseClient()
+
+	const router = useRouter()
 
 	const textAreaRef = useRef<ElementRef<'textarea'>>(null)
 	const form = useForm<TypecommenSchema>({
@@ -50,6 +53,8 @@ const PinComment: React.FC<IPinCommentProps> = ({ pinId, comments }) => {
 			if (error) {
 				toast.error(error.message)
 			}
+
+			router.refresh()
 			form.reset()
 			toast.success('Add comment succes', {
 				icon: '👏',
@@ -62,13 +67,17 @@ const PinComment: React.FC<IPinCommentProps> = ({ pinId, comments }) => {
 	return (
 		<div className='flex flex-col gap-y-4 mt-10 relative'>
 			<h1 className='capitalize text-xl font-bold'>comments</h1>
-			<ScrollArea className='w-full border rounded-sm h-60 px-5 py-3'>
-				<div className='flex flex-col gap-y-5 w-full'>
-					{comments.map(comment => (
-						<CommentItem key={comment.id} comment={comment} />
-					))}
-				</div>
-			</ScrollArea>
+			{comments.length === 0 ? (
+				<p>Not a single comment. Leave a comment</p>
+			) : (
+				<ScrollArea className='w-full h-60 px-5 py-3'>
+					<div className='flex flex-col gap-y-5 w-full'>
+						{comments.map(comment => (
+							<CommentItem key={comment.id} comment={comment} />
+						))}
+					</div>
+				</ScrollArea>
+			)}
 			<div className='absolute bottom-[-8rem] left-0 right-0 z-[65]'>
 				<h2 className='text-left text-lg font-semibold mb-5'>10 comments</h2>
 				<Form {...form}>
@@ -85,7 +94,7 @@ const PinComment: React.FC<IPinCommentProps> = ({ pinId, comments }) => {
 												{...field}
 												ref={textAreaRef}
 												rows={1}
-												className='appearance-none rounded-2xl overflow-hidden resize-none w-full focus-visible:ring-0 focus-visible:ring-offset-0 min-h-[40px]'
+												className='appearance-none rounded-3xl overflow-hidden resize-none w-full focus-visible:ring-0 focus-visible:ring-offset-0 min-h-[40px]'
 												placeholder='Add comment'
 											/>
 										</FormControl>

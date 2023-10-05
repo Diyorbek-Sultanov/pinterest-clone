@@ -1,5 +1,6 @@
 import { getComments } from '@/actions/getComments'
 import { getPinById } from '@/actions/getPinById'
+import { getPins } from '@/actions/getPins'
 import type { Metadata } from 'next'
 
 import PinDetailInfo from './components/pin-detail'
