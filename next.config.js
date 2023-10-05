@@ -6,6 +6,9 @@ const nextConfig = {
 			'blgovhcqebcpbijcwavk.supabase.co',
 		],
 	},
+	experimental: {
+		serverActions: true,
+	},
 }
 
 module.exports = nextConfig
