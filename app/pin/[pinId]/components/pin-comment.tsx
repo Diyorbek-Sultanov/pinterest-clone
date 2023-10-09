@@ -79,7 +79,9 @@ const PinComment: React.FC<IPinCommentProps> = ({ pinId, comments }) => {
 				</ScrollArea>
 			)}
 			<div className='absolute bottom-[-8rem] left-0 right-0 z-[65]'>
-				<h2 className='text-left text-lg font-semibold mb-5'>10 comments</h2>
+				<h2 className='text-left text-lg font-semibold mb-5'>
+					{comments.length} comments
+				</h2>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
 						<div className='flex items-center gap-x-2 w-full'>
