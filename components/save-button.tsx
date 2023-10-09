@@ -5,16 +5,17 @@ import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import toast from 'react-hot-toast'
 
 import { useModal } from '@/hooks/useModal'
+import { IPins } from '@/types/pins.types'
 import { cn } from '@/lib/utils'
 
 import { Button } from './ui/button'
 
 type TypeSaveButtonProps = {
-	pinId?: string
+	pin?: IPins
 	className?: string
 }
 
-const SaveButton: React.FC<TypeSaveButtonProps> = ({ pinId, className }) => {
+const SaveButton: React.FC<TypeSaveButtonProps> = ({ pin, className }) => {
 	const user = useUser()
 	const supabaseClient = useSupabaseClient()
 	const { onOpen } = useModal()
@@ -29,7 +30,7 @@ const SaveButton: React.FC<TypeSaveButtonProps> = ({ pinId, className }) => {
 				.from('liked_pins')
 				.select('*')
 				.eq('user_id', user?.id)
-				.eq('pin_id', pinId)
+				.eq('pin_id', pin?.id)
 				.single()
 
 			if (!error && data) {
@@ -38,18 +39,18 @@ const SaveButton: React.FC<TypeSaveButtonProps> = ({ pinId, className }) => {
 		}
 
 		fetchSavedPins()
-	}, [pinId, supabaseClient, user?.id])
+	}, [pin?.id, supabaseClient, user?.id])
 
 	const onClick = async () => {
 		if (!user) {
-			return onOpen()
+			return onOpen('auth')
 		}
 
 		if (isSaved) {
 			const { error } = await supabaseClient
 				.from('liked_pins')
 				.delete()
-				.eq('pin_id', pinId)
+				.eq('pin_id', pin?.id)
 				.eq('user_id', user?.id)
 
 			if (error) {
@@ -59,18 +60,20 @@ const SaveButton: React.FC<TypeSaveButtonProps> = ({ pinId, className }) => {
 			}
 		} else {
 			const { error } = await supabaseClient.from('liked_pins').insert({
-				pin_id: pinId,
 				user_id: user?.id,
+				pin_id: pin?.id,
 			})
 
 			if (error) {
 				toast.error(error.message)
 			} else {
 				setIsSaved(true)
-				toast.success('Saved!')
+				onOpen('savePin', pin)
 			}
 		}
 	}
+
+	const text = isSaved ? 'Saved' : 'Save'
 
 	return (
 		<Button
@@ -82,7 +85,7 @@ const SaveButton: React.FC<TypeSaveButtonProps> = ({ pinId, className }) => {
 			size={'sm'}
 			onClick={onClick}
 		>
-			Save
+			{text}
 		</Button>
 	)
 }

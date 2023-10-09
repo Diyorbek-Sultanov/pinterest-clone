@@ -2,7 +2,7 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
 import { IPins } from '@/types/pins.types'
 
-const useLoadImage = (pin: IPins) => {
+const useLoadImage = (pin: IPins | undefined) => {
 	const supabaseClient = useSupabaseClient()
 
 	if (!pin) return null

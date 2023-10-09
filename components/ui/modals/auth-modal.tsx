@@ -18,9 +18,11 @@ const AuthModal: React.FC = () => {
 	const router = useRouter()
 	const supabaseClient = useSupabaseClient()
 	const { session } = useSessionContext()
-	const { isOpen, onClose } = useModal()
+	const { isOpen, onClose, type } = useModal()
 
 	const theme = localStorage.getItem('theme') as string
+
+	const isOpenModal = isOpen && type === 'auth'
 
 	useEffect(() => {
 		if (session) {
@@ -43,7 +45,7 @@ const AuthModal: React.FC = () => {
 
 	return (
 		<Modal
-			isOpen={isOpen}
+			isOpen={isOpenModal}
 			title='Welcome to Pinterest'
 			description='Login to your account'
 			onClose={handleClose}

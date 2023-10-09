@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 
 import AuthModal from '@/components/ui/modals/auth-modal'
+import SavePinModal from '@/components/ui/save-pin-modal'
 
 const ModalProvider: React.FC = () => {
 	const [isMounted, setIsMounted] = useState(false)
@@ -14,6 +15,7 @@ const ModalProvider: React.FC = () => {
 	return (
 		<>
 			<AuthModal />
+			<SavePinModal />
 		</>
 	)
 }

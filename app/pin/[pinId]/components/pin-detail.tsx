@@ -59,7 +59,7 @@ const PinDetailInfo: React.FC<IPinDetailProps> = ({ pin, comments }) => {
 						<span className='sr-only'>copy</span>
 					</Button>
 				</div>
-				<SaveButton className='text-base px-7' pinId={pin.id} />
+				<SaveButton className='text-base px-7' pin={pin} />
 			</div>
 			<h1 className='text-2xl font-bold mt-8'>{pin.title}</h1>
 			<GetUser

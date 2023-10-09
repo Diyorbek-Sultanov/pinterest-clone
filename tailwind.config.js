@@ -76,10 +76,32 @@ module.exports = {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: 0 },
 				},
+				modalShow: {
+					from: {
+						bottom: '-100px',
+						opacity: 0.6,
+					},
+					to: {
+						bottom: '20px',
+						opacity: 1,
+					},
+				},
+				modalHide: {
+					from: {
+						bottom: '20px',
+						opacity: 1,
+					},
+					to: {
+						bottom: '-100%',
+						opacity: 0.5,
+					},
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+				modalShow: 'modalShow 0.3s ease-in-out',
+				modalHide: 'modalHide 0.3s ease-in-out',
 			},
 		},
 	},
