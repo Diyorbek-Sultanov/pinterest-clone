@@ -28,7 +28,7 @@ const Pin: React.FC<IPinProps> = ({ pin }) => {
 				</div>
 			</Link>
 			<div className='opacity-0 group-hover:opacity-100 absolute top-2 right-2 z-[55] transition-opacity'>
-				<SaveButton />
+				<SaveButton pinId={pin.id} />
 			</div>
 		</div>
 	)
