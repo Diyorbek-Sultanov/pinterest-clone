@@ -16,6 +16,7 @@ interface IModalProps {
 	title: string
 	children: React.ReactNode
 	description: string
+	header: JSX.Element
 }
 
 const Modal: React.FC<IModalProps> = ({
@@ -24,14 +25,13 @@ const Modal: React.FC<IModalProps> = ({
 	onClose,
 	children,
 	description,
+	header,
 }) => {
 	return (
 		<Dialog open={isOpen} defaultOpen={isOpen} onOpenChange={onClose}>
 			<DialogContent className='w-screen h-screen md:h-auto'>
 				<DialogHeader className='mb-6 flex flex-col items-center gap-y-3'>
-					<div className='relative h-10 w-10'>
-						<Image fill alt='image' src={'/images/pinterest-logo.svg'} />
-					</div>
+					{header}
 					<DialogTitle className='text-center text-xl'>{title}</DialogTitle>
 					<DialogDescription className='text-xs'>
 						{description}

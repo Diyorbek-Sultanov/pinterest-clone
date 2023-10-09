@@ -7,6 +7,7 @@ import {
 } from '@supabase/auth-helpers-react'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 import { useModal } from '@/hooks/useModal'
@@ -34,12 +35,19 @@ const AuthModal: React.FC = () => {
 		}
 	}
 
+	const header = (
+		<div className='relative h-10 w-10'>
+			<Image fill alt='image' src={'/images/pinterest-logo.svg'} />
+		</div>
+	)
+
 	return (
 		<Modal
 			isOpen={isOpen}
 			title='Welcome to Pinterest'
 			description='Login to your account'
 			onClose={handleClose}
+			header={header}
 		>
 			<Auth
 				theme={
