@@ -1,9 +1,7 @@
 'use client'
 
-import { useUser } from '@supabase/auth-helpers-react'
-import format from 'date-fns/format'
-
 import GetUser from '@/components/get-user'
+import { useUser } from '@/hooks/use-user'
 import { IComments } from '@/types/comment.types'
 
 const CommentItem: React.FC<{ comment: IComments }> = ({ comment }) => {
@@ -13,8 +11,8 @@ const CommentItem: React.FC<{ comment: IComments }> = ({ comment }) => {
 		<div className='flex flex-col gap-y-2'>
 			<div className='flex items-center justify-between'>
 				<GetUser
-					avatar={user?.user_metadata.avatar_url}
-					fullName={user?.user_metadata.full_name}
+					avatar={user?.user?.user_metadata.avatar_url}
+					fullName={user?.user?.user_metadata.full_name as string}
 				/>
 				<span className='text-xs font-medium italic dark:text-gray-400 text-gray-500'>
 					{new Date(comment.created_at).getUTCDay()} day ago

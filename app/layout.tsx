@@ -10,6 +10,8 @@ import ToasterProvider from '@/providers/toster-provider'
 
 import '../styles/globals.css'
 
+import { UserContextProvider } from '@/providers/user-provider'
+
 const mono = Open_Sans({
 	subsets: ['latin'],
 	display: 'swap',
@@ -33,17 +35,19 @@ export default function RootLayout({
 			<body className={mono.className}>
 				<ThemeProvider attribute='class' defaultTheme='system' enableSystem>
 					<SupabaseProvider>
-						<ToasterProvider />
-						<ModalProvider />
-						<div className='dark:bg-bgBodyDark bg-bgBody min-h-screen overflow-hidden'>
-							<aside className='hidden md:flex md:fixed md:inset-y-0 z-20 md:w-72 h-full'>
-								<Sidebar />
-							</aside>
-							<main className='md:pl-72 h-full'>
-								<Navbar />
-								{children}
-							</main>
-						</div>
+						<UserContextProvider>
+							<ToasterProvider />
+							<ModalProvider />
+							<div className='dark:bg-bgBodyDark bg-bgBody min-h-screen overflow-hidden'>
+								<aside className='hidden md:flex md:fixed md:inset-y-0 z-20 md:w-72 h-full'>
+									<Sidebar />
+								</aside>
+								<main className='md:pl-72 h-full'>
+									<Navbar />
+									{children}
+								</main>
+							</div>
+						</UserContextProvider>
 					</SupabaseProvider>
 				</ThemeProvider>
 			</body>

@@ -1,18 +1,15 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+'use client'
 
 import MobileSidebar from '@/components/mobile-sidebar'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { useUser } from '@/hooks/use-user'
 
 import AuthButtons from './auth-buttons'
 import ProtectButtons from './protect-buttons'
 import SearchInput from './search-input'
 
-const Navbar: React.FC = async () => {
-	const supabase = createServerComponentClient({ cookies })
-	const {
-		data: { user },
-	} = await supabase.auth.getUser()
+const Navbar: React.FC = () => {
+	const user = useUser()
 
 	return (
 		<header className='pt-10 px-8 w-full mb-8'>

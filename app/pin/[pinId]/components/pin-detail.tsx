@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback } from 'react'
-import { useUser } from '@supabase/auth-helpers-react'
 import { saveAs } from 'file-saver'
 import toast from 'react-hot-toast'
 
@@ -9,6 +8,7 @@ import GetUser from '@/components/get-user'
 import SaveButton from '@/components/save-button'
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
+import { useUser } from '@/hooks/use-user'
 import { useLoadImage } from '@/hooks/userLoadImage'
 import { IComments } from '@/types/comment.types'
 import { IPins } from '@/types/pins.types'
@@ -62,10 +62,13 @@ const PinDetailInfo: React.FC<IPinDetailProps> = ({ pin, comments }) => {
 				<SaveButton className='text-base px-7' pin={pin} />
 			</div>
 			<h1 className='text-2xl font-bold mt-8'>{pin.title}</h1>
+			<p className='mt-6 w-full font-normal leading-6'>
+				{pin.description ? pin.description : 'No description'}
+			</p>
 			<GetUser
 				className='mt-5'
-				avatar={user?.user_metadata.avatar_url}
-				fullName={user?.user_metadata.full_name}
+				avatar={user?.user?.user_metadata.avatar_url}
+				fullName={user?.user?.user_metadata.full_name}
 			/>
 			<PinComment pinId={pin.id} comments={comments} />
 		</div>

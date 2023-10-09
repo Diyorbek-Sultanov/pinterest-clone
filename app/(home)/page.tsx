@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { getPins } from '@/actions/getPins'
 import type { Metadata } from 'next'
 

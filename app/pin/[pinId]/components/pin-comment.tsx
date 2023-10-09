@@ -2,7 +2,7 @@
 
 import { useRef, type ElementRef } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { Send } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -14,6 +14,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Textarea } from '@/components/ui/textarea'
 import { useAutoSizeArea } from '@/hooks/use-auto-size-area'
+import { useUser } from '@/hooks/use-user'
 import { IComments } from '@/types/comment.types'
 import { commenSchema, TypecommenSchema } from '@/lib/validations/comment'
 
@@ -45,7 +46,7 @@ const PinComment: React.FC<IPinCommentProps> = ({ pinId, comments }) => {
 	const onSubmit = async (data: TypecommenSchema) => {
 		try {
 			const { error } = await supabaseClient.from('coments').insert({
-				user_id: user?.id,
+				user_id: user?.userDetails?.id,
 				pin_id: pinId,
 				comment_text: data.comment,
 			})
@@ -78,14 +79,14 @@ const PinComment: React.FC<IPinCommentProps> = ({ pinId, comments }) => {
 					</div>
 				</ScrollArea>
 			)}
-			<div className='absolute bottom-[-8rem] left-0 right-0 z-[65]'>
+			<div className='absolute bottom-[-4rem] border-t left-0 right-0 z-[65]'>
 				<h2 className='text-left text-lg font-semibold mb-5'>
 					{comments.length} comments
 				</h2>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
 						<div className='flex items-center gap-x-2 w-full'>
-							<Avatar avatarUrl={user?.user_metadata.avatar_url} />
+							<Avatar avatarUrl={user?.user?.user_metadata.avatar_url} />
 							<FormField
 								control={form.control}
 								name='comment'

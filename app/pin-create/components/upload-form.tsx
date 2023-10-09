@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { CheckSquare } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { useUser } from '@/hooks/use-user'
 import { TypeUploadSchema, uploadSchema } from '@/lib/validations/upload'
 
 const UploadForm: React.FC = () => {
@@ -64,7 +65,7 @@ const UploadForm: React.FC = () => {
 
 			const { error: uploadErr } = await supabaseClient.from('pins').insert({
 				image_path: pinData?.path,
-				user_id: user.id,
+				user_id: user.userDetails?.id,
 				title: data.title,
 				description: data.description,
 			})
@@ -122,8 +123,8 @@ const UploadForm: React.FC = () => {
 								)}
 							/>
 							<GetUser
-								avatar={user?.user_metadata.avatar_url}
-								fullName={user?.user_metadata.full_name}
+								avatar={user?.user?.user_metadata.avatar_url}
+								fullName={user?.user?.user_metadata.full_name}
 							/>
 							<FormField
 								control={form.control}
