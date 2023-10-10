@@ -55,7 +55,7 @@ export interface Database {
 				Insert: {
 					created_at?: string
 					pin_id?: number | null
-					user_id: string
+					user_id?: string
 				}
 				Update: {
 					created_at?: string
@@ -119,6 +119,7 @@ export interface Database {
 					updated_at: string | null
 					username: string | null
 					website: string | null
+					description: string | null
 				}
 				Insert: {
 					avatar_url?: string | null
@@ -127,6 +128,7 @@ export interface Database {
 					updated_at?: string | null
 					username?: string | null
 					website?: string | null
+					description?: string | null
 				}
 				Update: {
 					avatar_url?: string | null
@@ -135,6 +137,7 @@ export interface Database {
 					updated_at?: string | null
 					username?: string | null
 					website?: string | null
+					description?: string | null
 				}
 				Relationships: [
 					{
