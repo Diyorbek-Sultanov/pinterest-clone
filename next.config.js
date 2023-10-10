@@ -9,6 +9,7 @@ const nextConfig = {
 	experimental: {
 		serverActions: true,
 	},
+	poweredByHeader: false,
 }
 
 module.exports = nextConfig

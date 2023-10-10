@@ -4,4 +4,5 @@ export interface ISupaUser {
 	full_name: string
 	avatar_url: string
 	website?: string
+	description?: string
 }

@@ -5,14 +5,14 @@ import Link from 'next/link'
 import { useLoadImage } from '@/hooks/userLoadImage'
 import { IPins } from '@/types/pins.types'
 
-import SaveButton from './save-button'
-import MyImage from './ui/image'
+import SaveButton from '../save-button'
+import MyImage from '../ui/image'
 
 interface IPinProps {
 	pin: IPins
 }
 
-const Pin: React.FC<IPinProps> = ({ pin }) => {
+const PinItem: React.FC<IPinProps> = ({ pin }) => {
 	const imageUrl = useLoadImage(pin) as string
 
 	return (
@@ -34,4 +34,4 @@ const Pin: React.FC<IPinProps> = ({ pin }) => {
 	)
 }
 
-export default Pin
+export default PinItem
