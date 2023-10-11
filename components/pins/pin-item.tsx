@@ -1,11 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { useLoadImage } from '@/hooks/userLoadImage'
 import { IPins } from '@/types/pins.types'
 
 import SaveButton from '../save-button'
+import { Button } from '../ui/button'
+import Icon from '../ui/icon'
 import MyImage from '../ui/image'
 
 interface IPinProps {
@@ -14,6 +17,9 @@ interface IPinProps {
 
 const PinItem: React.FC<IPinProps> = ({ pin }) => {
 	const imageUrl = useLoadImage(pin) as string
+	const pathname = usePathname()
+
+	const isProfilePage = pathname.startsWith('/profile')
 
 	return (
 		<div className='relative group'>
@@ -30,6 +36,14 @@ const PinItem: React.FC<IPinProps> = ({ pin }) => {
 			<div className='opacity-0 group-hover:opacity-100 absolute top-2 right-2 z-[55] transition-opacity'>
 				<SaveButton pin={pin} />
 			</div>
+			{isProfilePage && (
+				<div className='opacity-0 group-hover:opacity-100 absolute bottom-2 right-3 z-[55] transition-opacity'>
+					<Button size={'icon'}>
+						<span className='sr-only'>change pin</span>
+						<Icon name='pencil-line' />
+					</Button>
+				</div>
+			)}
 		</div>
 	)
 }
