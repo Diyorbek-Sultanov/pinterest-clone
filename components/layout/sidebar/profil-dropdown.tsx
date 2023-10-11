@@ -1,5 +1,7 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+
 import GetUser from '@/components/get-user'
 import { Button } from '@/components/ui/button'
 import {
@@ -14,6 +16,7 @@ import { useUser } from '@/hooks/use-user'
 
 const ProfilDropDown: React.FC = () => {
 	const user = useUser()
+	const router = useRouter()
 
 	return (
 		<DropdownMenu>
@@ -24,7 +27,9 @@ const ProfilDropDown: React.FC = () => {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent side='top' sideOffset={15}>
-				<DropdownMenuItem>
+				<DropdownMenuItem
+					onClick={() => router.push(`/profile/${user.userDetails?.id}`)}
+				>
 					<GetUser
 						avatar={user.userDetails?.avatar_url!}
 						fullName={user?.userDetails?.full_name!}

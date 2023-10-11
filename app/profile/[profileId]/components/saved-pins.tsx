@@ -8,24 +8,24 @@ import Spinner from '@/components/spinner'
 import { TabsContent } from '@/components/ui/tabs'
 import { IPins } from '@/types/pins.types'
 
-const CreatedPins: React.FC<{ userId: string }> = ({ userId }) => {
+const SavedPins: React.FC<{ userId: string }> = ({ userId }) => {
 	const supabaseClient = useSupabaseClient()
 	const [pins, setPins] = useState<IPins[]>([])
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 
 	useEffect(() => {
-		const fetchCreatedPins = async () => {
+		const fetchLikedPins = async () => {
 			try {
 				setIsLoading(true)
 				const { data, error } = await supabaseClient
-					.from('pins')
-					.select('*')
+					.from('liked_pins')
+					.select('*, pins(*)')
 					.eq('user_id', userId)
 					.order('created_at', { ascending: false })
 
 				if (error) console.log(error.message)
 
-				setPins((data as any) || [])
+				setPins(data?.map(item => item.pins as any) || [])
 			} catch (error) {
 				console.log(error)
 			} finally {
@@ -33,14 +33,20 @@ const CreatedPins: React.FC<{ userId: string }> = ({ userId }) => {
 			}
 		}
 
-		fetchCreatedPins()
+		fetchLikedPins()
 	}, [userId])
 
 	return (
-		<TabsContent value='created'>
-			{isLoading ? <Spinner /> : <Pins pins={pins} />}
+		<TabsContent value='saved'>
+			{isLoading ? (
+				<Spinner />
+			) : pins.length ? (
+				<Pins pins={pins} />
+			) : (
+				<div className='mt-6 text-center'>Not found</div>
+			)}
 		</TabsContent>
 	)
 }
 
-export default CreatedPins
+export default SavedPins

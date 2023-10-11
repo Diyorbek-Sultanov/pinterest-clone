@@ -1,4 +1,4 @@
-import { getUserById } from '@/actions/getUerById'
+import { getUserById } from '@/actions/getUserById'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -7,6 +7,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 import CreatedPins from './components/create-pins'
 import ProfileActions from './components/profile-actions'
+import SavedPins from './components/saved-pins'
 
 export const metadata: Metadata = {
 	title: 'Profile',
@@ -50,6 +51,7 @@ export default async function Page({
 					<TabsTrigger value='saved'>Saved</TabsTrigger>
 				</TabsList>
 				<CreatedPins userId={params.profileId} />
+				<SavedPins userId={params.profileId} />
 			</Tabs>
 		</div>
 	)
