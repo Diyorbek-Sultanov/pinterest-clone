@@ -37,7 +37,7 @@ const Sidebar: React.FC = () => {
 						fullName={user?.userDetails?.full_name!}
 					/>
 				</Link>
-				<ProfilDropDown />
+				{user && <ProfilDropDown />}
 			</div>
 		</div>
 	)

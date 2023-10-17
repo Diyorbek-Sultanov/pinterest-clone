@@ -42,7 +42,7 @@ export default async function Page({
 							? user.description
 							: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat maxime veniam inventore, quia facilis illo, corrupti quod eum cupiditate sequi deserunt iste est, placeat hic natus! Quidem laudantium magni dolore.'}
 					</p>
-					<ProfileActions />
+					<ProfileActions profileId={params.profileId} />
 				</div>
 			</div>
 			<Tabs defaultValue='saved' className='w-full mt-10'>

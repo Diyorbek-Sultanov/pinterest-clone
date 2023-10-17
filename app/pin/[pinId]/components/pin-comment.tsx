@@ -71,21 +71,21 @@ const PinComment: React.FC<IPinCommentProps> = ({ pinId, comments }) => {
 			{comments.length === 0 ? (
 				<p>Not a single comment. Leave a comment</p>
 			) : (
-				<ScrollArea className='w-full h-60 px-5 py-3'>
-					<div className='flex flex-col gap-y-5 w-full'>
+				<ScrollArea className='h-60 px-5 py-3'>
+					<div className='flex flex-col gap-y-5 w-fit'>
 						{comments.map(comment => (
 							<CommentItem key={comment.id} comment={comment} />
 						))}
 					</div>
 				</ScrollArea>
 			)}
-			<div className='absolute bottom-[-4rem] border-t left-0 right-0 z-[65]'>
+			<div className='absolute bottom-[-4rem] border-t bg-background left-0 right-0 z-[65]'>
 				<h2 className='text-left text-lg font-semibold mb-5'>
 					{comments.length} comments
 				</h2>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
-						<div className='flex items-center gap-x-2 w-full'>
+						<div className='flex items-center gap-x-2'>
 							<Avatar avatarUrl={user?.user?.user_metadata.avatar_url} />
 							<FormField
 								control={form.control}

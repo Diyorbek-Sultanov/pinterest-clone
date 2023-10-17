@@ -1,6 +1,8 @@
 'use client'
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 import GetUser from '@/components/get-user'
 import { Button } from '@/components/ui/button'
@@ -17,6 +19,13 @@ import { useUser } from '@/hooks/use-user'
 const ProfilDropDown: React.FC = () => {
 	const user = useUser()
 	const router = useRouter()
+	const supabase = createClientComponentClient()
+
+	const logout = async () => {
+		const { error } = await supabase.auth.signOut()
+
+		console.log(error)
+	}
 
 	return (
 		<DropdownMenu>
@@ -38,8 +47,14 @@ const ProfilDropDown: React.FC = () => {
 				<DropdownMenuLabel className='font-normal text-sm text-slate-500'>
 					Additionally
 				</DropdownMenuLabel>
-				<DropdownMenuItem>Setting</DropdownMenuItem>
-				<DropdownMenuItem>Logout</DropdownMenuItem>
+				<DropdownMenuItem
+					onClick={() =>
+						router.push(`/profile/${user.userDetails?.id}/settings`)
+					}
+				>
+					Setting
+				</DropdownMenuItem>
+				<DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	)

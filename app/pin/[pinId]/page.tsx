@@ -23,7 +23,7 @@ export default async function PinDetail({
 
 	return (
 		<div className='h-full dark:bg-bgHomeDark bg-white shadow-md overflow-hidden rounded-xl max-w-5xl mx-auto dark:shadow-none'>
-			<div className='flex justify-between gap-x-3 h-[640px]'>
+			<div className='grid grid-cols-1 md:grid-cols-2 gap-x-3 h-[640px]'>
 				<div className='flex-1 h-full'>
 					<PinImage pin={pin} />
 				</div>

@@ -18,7 +18,9 @@ const CommentItem: React.FC<{ comment: IComments }> = ({ comment }) => {
 					{new Date(comment.created_at).getUTCDay()} day ago
 				</span>
 			</div>
-			<p className='text-sm font-normal pl-5'>{comment.comment_text}</p>
+			<p className='text-sm break-words w-2/5 font-normal pl-4'>
+				{comment.comment_text}
+			</p>
 		</div>
 	)
 }
